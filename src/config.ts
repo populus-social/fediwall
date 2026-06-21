@@ -160,6 +160,11 @@ const parameterDefinitions: Array<ParamDef> = [
         from: (config: Partial<Config>, value: string) => config.textLines = parseInt(value),
         to: (config: Config) => config.textLines.toString(),
     },
+    {
+        names: ["maxposts"],
+        from: (config: Partial<Config>, value: string) => config.maxPosts = parseInt(value),
+        to: (config: Config) => config.maxPosts.toString(),
+    },
 ]
 
 if (import.meta.env.DEV) {
@@ -274,6 +279,7 @@ export function sanitizeConfig(config: any): Config {
     result.limit = Math.max(1, Math.min(100, config?.limit || fallback.limit))
     result.interval = Math.max(1, Math.min(600, config?.interval || fallback.interval))
     result.textLines = Math.max(0, Math.min(50, config?.textLines ?? fallback.textLines))
+    result.maxPosts = Math.max(0, Math.min(200, config?.maxPosts ?? fallback.maxPosts))
 
     result.title = config?.title || fallback.title
     result.theme = choice(themes, config.theme, fallback.theme)

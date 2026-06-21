@@ -17,6 +17,7 @@ export type Config = {
     limit: number,
     interval: number,
     textLines: number,
+    maxPosts: number,
 
     title: string,
     theme: string,

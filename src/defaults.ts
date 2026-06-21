@@ -22,6 +22,7 @@ export const fallbackConfig: Config = {
     limit: 20,
     interval: 10,
     textLines: 0, // 0 = unlimited
+    maxPosts: 0, // 0 = unlimited
 
     title: "Fediwall",
     theme: "auto",

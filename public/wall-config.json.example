@@ -17,6 +17,7 @@
     "limit": 20,
     "interval": 10,
     "textLines": 0,
+    "maxPosts": 0,
 
     "title": "Fediwall",
     "theme": "auto",

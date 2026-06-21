@@ -193,6 +193,11 @@ const filteredPosts = computed(() => {
     const bPinned = b.pinned ? 1 : 0
     return bPinned - aPinned || b.date.getTime() - a.date.getTime()
   })
+
+  // Cap to the top N posts (post-sort, so pinned and most recent survive first)
+  if (config.value && config.value.maxPosts > 0)
+    posts = posts.slice(0, config.value.maxPosts)
+
   return posts
 })
 
