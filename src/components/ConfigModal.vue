@@ -60,6 +60,11 @@ const formInterval = computed({
   set: (value) => config.value.interval = Math.min(600, Math.max(5, parseInt(value || "0") || 0)),
 });
 
+const formTextLines = computed({
+  get: () => config.value.textLines.toString(),
+  set: (value) => config.value.textLines = Math.min(50, Math.max(0, parseInt(value || "0") || 0)),
+});
+
 const formMediaText = computed({
   get: () => config.value.showText,
   set: (value) => {
@@ -304,6 +309,14 @@ const onSubmit = () => {
                         Autoplay videos (muted)
                       </label>
                     </div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="edit-textlines" class="form-label">Limit post length:</label>
+                  <div class="ms-5">
+                    <input type="text" class="form-control" style="max-width: 8em" id="edit-textlines" v-model.lazy="formTextLines" :disabled="!formMediaText">
+                    <div class="form-text">Maximum text lines per post before truncating behind a "Read more" link. Use 0 to disable.</div>
                   </div>
                 </div>
 

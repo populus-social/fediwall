@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useElementVisibility, useIntervalFn } from '@vueuse/core'
-import { computed, inject, ref } from 'vue';
+import { computed, inject, nextTick, onMounted, ref } from 'vue';
 import moment from 'moment'
 import { type Config, type Post } from '@/types';
 
@@ -8,6 +8,22 @@ const props = defineProps<{
   config: Config,
   post: Post,
 }>()
+
+const textElement = ref(null)
+const expanded = ref(false)
+const overflowing = ref(false)
+const clampLines = computed(() => props.config.textLines)
+
+// Measured once on mount, while the clamp is still active (expanded starts
+// false): later toggling expanded only changes display, not this result.
+// nextTick: v-dompurify-html injects post.content asynchronously, after this
+// component's own onMounted would otherwise fire on an still-empty element.
+onMounted(async () => {
+  await nextTick()
+  const el = textElement.value as HTMLElement | null
+  if (el && props.config.textLines > 0)
+    overflowing.value = el.scrollHeight > el.clientHeight + 1
+})
 
 const timeAgo = ref(moment(props.post.date).fromNow())
 
@@ -53,7 +69,10 @@ const onMediaLoad = inject('fixLayout', () => undefined)
             <img :src="media.preview" :alt="media.alt" :title="media.alt" @load="onMediaLoad">
           </a>
         </div>
-        <p v-if="config.showText" class="card-text" v-dompurify-html="post.content"></p>
+        <p v-if="config.showText" class="card-text" ref="textElement"
+          :class="{ clamped: config.textLines > 0 && !expanded }" v-dompurify-html="post.content"></p>
+        <button v-if="overflowing" type="button" class="btn btn-link btn-sm p-0 text-muted read-more"
+          @click="expanded = !expanded">{{ expanded ? "Show less" : "Read more" }}</button>
         <p class="card-text text-end text-break"><a :href="post.url" target="_blank" :title="post.date.toLocaleString()"
             class="text-decoration-none text-muted"><small>{{ timeAgo }}</small></a></p>
       </div>
@@ -111,5 +130,20 @@ const onMediaLoad = inject('fixLayout', () => undefined)
 .wall-item .invisible {
   font-size: 0 !important;
   line-height: 0 !important;
+}
+
+.wall-item .card-text.clamped {
+  /* max-height (not -webkit-line-clamp) so the full content still lays out
+     and scrollHeight reflects it -- line-clamp boxes never generate the
+     clipped line boxes, so scrollHeight==clientHeight and overflow can't
+     be detected from script. */
+  line-height: 1.4em;
+  max-height: calc(1.4em * v-bind(clampLines));
+  overflow: hidden;
+}
+
+.wall-item .read-more {
+  display: block;
+  margin: -0.5rem 0 0.5rem;
 }
 </style>
