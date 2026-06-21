@@ -20,6 +20,7 @@ export type Config = {
     title: string,
     theme: string,
     showInfobar: boolean,
+    showFooter: boolean,
 
     showText: boolean,
     showMedia: boolean,

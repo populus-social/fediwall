@@ -133,6 +133,11 @@ const parameterDefinitions: Array<ParamDef> = [
         to: (config: Config) => toBool(config.showInfobar),
     },
     {
+        names: ["footer"],
+        from: (config: Partial<Config>, value: string) => config.showFooter = fromBool(value),
+        to: (config: Config) => toBool(config.showFooter),
+    },
+    {
         names: ["autoplay"],
         from: (config: Partial<Config>, value: string) => config.playVideos = fromBool(value),
         to: (config: Config) => toBool(config.playVideos),
@@ -267,6 +272,7 @@ export function sanitizeConfig(config: any): Config {
     result.title = config?.title || fallback.title
     result.theme = choice(themes, config.theme, fallback.theme)
     result.showInfobar = boolOr(config.showInfo, fallback.showInfobar)
+    result.showFooter = boolOr(config.showFooter, fallback.showFooter)
     result.showText = boolOr(config.showText, fallback.showText)
     result.showMedia = boolOr(config.showMedia, fallback.showMedia)
     result.playVideos = boolOr(config.playVideos, fallback.playVideos)
