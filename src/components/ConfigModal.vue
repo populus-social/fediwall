@@ -60,6 +60,11 @@ const formInterval = computed({
   set: (value) => config.value.interval = Math.min(600, Math.max(5, parseInt(value || "0") || 0)),
 });
 
+const formMaxPosts = computed({
+  get: () => config.value.maxPosts.toString(),
+  set: (value) => config.value.maxPosts = Math.min(200, Math.max(0, parseInt(value || "0") || 0)),
+});
+
 const formMediaText = computed({
   get: () => config.value.showText,
   set: (value) => {
@@ -324,6 +329,14 @@ const onSubmit = () => {
                   <div class="ms-5">
                     <input type="text" class="form-control" name="edit-limit" v-model.lazy="formLimit">
                     <div class="form-text">Limit number of results per API request. Increase only if your filters hide too many posts.</div>
+                  </div>
+                </div>
+
+                <div class="mb-3">
+                  <label for="edit-maxposts" class="form-label">Maximum posts shown</label>
+                  <div class="ms-5">
+                    <input type="text" class="form-control" name="edit-maxposts" v-model.lazy="formMaxPosts">
+                    <div class="form-text">Cap the wall to this many posts (pinned and most recent first). Use 0 for no cap.</div>
                   </div>
                 </div>
 
