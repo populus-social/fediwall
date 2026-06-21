@@ -155,6 +155,11 @@ const parameterDefinitions: Array<ParamDef> = [
         from: (config: Partial<Config>, value: string) => config.interval = parseInt(value),
         to: (config: Config) => config.interval.toString(),
     },
+    {
+        names: ["textlines"],
+        from: (config: Partial<Config>, value: string) => config.textLines = parseInt(value),
+        to: (config: Config) => config.textLines.toString(),
+    },
 ]
 
 if (import.meta.env.DEV) {
@@ -268,6 +273,7 @@ export function sanitizeConfig(config: any): Config {
 
     result.limit = Math.max(1, Math.min(100, config?.limit || fallback.limit))
     result.interval = Math.max(1, Math.min(600, config?.interval || fallback.interval))
+    result.textLines = Math.max(0, Math.min(50, config?.textLines ?? fallback.textLines))
 
     result.title = config?.title || fallback.title
     result.theme = choice(themes, config.theme, fallback.theme)

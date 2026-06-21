@@ -16,6 +16,7 @@ export type Config = {
 
     limit: number,
     interval: number,
+    textLines: number,
 
     title: string,
     theme: string,
