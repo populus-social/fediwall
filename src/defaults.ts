@@ -25,6 +25,7 @@ export const fallbackConfig: Config = {
     title: "Fediwall",
     theme: "auto",
     showInfobar: true,
+    showFooter: true,
     showText: true,
     showMedia: true,
     playVideos: true,

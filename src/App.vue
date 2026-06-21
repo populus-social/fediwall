@@ -282,7 +282,7 @@ const privacyLink = computed(() => {
 
     <ConfigModal v-if="config" v-model="config" id="configModal" />
 
-    <footer>
+    <footer v-if="config?.showFooter">
       <aside class="opacity-50 text-center">
         Status: {{ statusText || "OK" }}
       </aside>
