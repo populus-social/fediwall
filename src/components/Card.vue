@@ -41,7 +41,16 @@ const playVideo = computed(() => {
   return media.value?.type === "video" && props.config.playVideos && mediaIsVisible.value
 })
 
-const onMediaLoad = inject('fixLayout', () => undefined)
+const fixLayout = inject('fixLayout', () => undefined)
+const onMediaLoad = fixLayout
+
+// Expanding/collapsing changes this card's height without changing anything
+// App.vue's own render depends on, so its onUpdated-triggered fixLayout never
+// fires on its own -- trigger it here once the DOM reflects the new height.
+const toggleExpanded = () => {
+  expanded.value = !expanded.value
+  nextTick(fixLayout)
+}
 
 </script>
 
@@ -72,7 +81,7 @@ const onMediaLoad = inject('fixLayout', () => undefined)
         <p v-if="config.showText" class="card-text" ref="textElement"
           :class="{ clamped: config.textLines > 0 && !expanded }" v-dompurify-html="post.content"></p>
         <button v-if="overflowing" type="button" class="btn btn-link btn-sm p-0 text-muted read-more"
-          @click="expanded = !expanded">{{ expanded ? "Show less" : "Read more" }}</button>
+          @click="toggleExpanded">{{ expanded ? "Show less" : "Read more" }}</button>
         <p class="card-text text-end text-break"><a :href="post.url" target="_blank" :title="post.date.toLocaleString()"
             class="text-decoration-none text-muted"><small>{{ timeAgo }}</small></a></p>
       </div>
