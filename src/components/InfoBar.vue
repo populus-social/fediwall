@@ -33,9 +33,9 @@ function sep(index: number, length: number, sep: string, lastsep: string) {
 
 <template>
     <div>
-        This Fediwall shows posts
+        A glimpse into the Fediverse — join the conversation
         <template v-if="tags.length">
-            tagged with
+            under
             <template v-for="(t, index) in tags" :key="index">
                 <code>#{{ t }}</code>{{ sep(index, tags.length, ", ", tagsHidden ? ", " : " or ") }}
             </template>
