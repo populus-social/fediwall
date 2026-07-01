@@ -28,6 +28,7 @@ export const fallbackConfig: Config = {
     theme: "auto",
     showInfobar: true,
     showFooter: true,
+    allowConfig: true,
     showText: true,
     showMedia: true,
     playVideos: true,

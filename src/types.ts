@@ -23,6 +23,10 @@ export type Config = {
     theme: string,
     showInfobar: boolean,
     showFooter: boolean,
+    // Deliberately NOT wired to a query-string parameter in config.ts — this must only
+    // ever be settable via the site's own wall-config.json, never overridable by a visitor
+    // the way showInfobar/showFooter are via ?info=/?footer=.
+    allowConfig: boolean,
 
     showText: boolean,
     showMedia: boolean,

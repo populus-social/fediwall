@@ -285,6 +285,10 @@ export function sanitizeConfig(config: any): Config {
     result.theme = choice(themes, config.theme, fallback.theme)
     result.showInfobar = boolOr(config.showInfo, fallback.showInfobar)
     result.showFooter = boolOr(config.showFooter, fallback.showFooter)
+    // No entry in parameterDefinitions for this one, deliberately: it must only ever
+    // come from the site config (config.allowConfig here is the raw wall-config.json
+    // object when called from loadJson, never the URL-derived partial from fromQuery).
+    result.allowConfig = boolOr(config.allowConfig, fallback.allowConfig)
     result.showText = boolOr(config.showText, fallback.showText)
     result.showMedia = boolOr(config.showMedia, fallback.showMedia)
     result.playVideos = boolOr(config.playVideos, fallback.playVideos)

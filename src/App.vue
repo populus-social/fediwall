@@ -242,9 +242,12 @@ const privacyLink = computed(() => {
 <template>
   <div id="page">
 
-    <header v-if="config?.showInfobar" class="secret-hover" style="cursor: context-menu" data-bs-toggle="modal"
-      data-bs-target="#configModal" title="Click to edit wall settings">
-      <span class="text-muted float-end secret">
+    <header v-if="config?.showInfobar" :class="config?.allowConfig ? 'secret-hover' : undefined"
+      :style="config?.allowConfig ? 'cursor: context-menu' : undefined"
+      :data-bs-toggle="config?.allowConfig ? 'modal' : undefined"
+      :data-bs-target="config?.allowConfig ? '#configModal' : undefined"
+      :title="config?.allowConfig ? 'Click to edit wall settings' : undefined">
+      <span v-if="config?.allowConfig" class="text-muted float-end secret">
         <icon icon="gear" />
       </span>
       <InfoBar :config="config" />
@@ -285,7 +288,7 @@ const privacyLink = computed(() => {
       </div>
     </main>
 
-    <ConfigModal v-if="config" v-model="config" id="configModal" />
+    <ConfigModal v-if="config && config.allowConfig" v-model="config" id="configModal" />
 
     <footer v-if="config?.showFooter">
       <aside class="opacity-50 text-center">
@@ -293,7 +296,7 @@ const privacyLink = computed(() => {
       </aside>
       <button class="btn btn-link text-muted" @click="toggleTheme(); false">[{{ actualTheme == "dark" ? "Light" : "Dark"
         }} mode]</button>
-      <button class="btn btn-link text-muted" data-bs-toggle="modal" data-bs-target="#configModal">[Customize]</button>
+      <button v-if="config?.allowConfig" class="btn btn-link text-muted" data-bs-toggle="modal" data-bs-target="#configModal">[Customize]</button>
       <div>
         <a href="https://github.com/defnull/fediwall" target="_blank" class="mx-1 text-muted">Fediwall <span
             v-if="gitVersion">{{ gitVersion }}</span></a>
