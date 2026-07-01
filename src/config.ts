@@ -255,7 +255,7 @@ export function sanitizeConfig(config: any): Config {
         (config.servers ??= []).push(config.server);
     }
     if (isString(config.info))
-        config.showinfo = config.info == "top"
+        config.showInfobar = config.info == "top"
 
 
     const fallback = siteConfig || fallbackConfig;
@@ -283,7 +283,7 @@ export function sanitizeConfig(config: any): Config {
 
     result.title = config?.title || fallback.title
     result.theme = choice(themes, config.theme, fallback.theme)
-    result.showInfobar = boolOr(config.showInfo, fallback.showInfobar)
+    result.showInfobar = boolOr(config.showInfobar, fallback.showInfobar)
     result.showFooter = boolOr(config.showFooter, fallback.showFooter)
     // No entry in parameterDefinitions for this one, deliberately: it must only ever
     // come from the site config (config.allowConfig here is the raw wall-config.json
