@@ -1,10 +1,13 @@
 # Fediwall
 
-> **This is populus.social's development version of Fediwall** — a fork of
-> [defnull/fediwall](https://github.com/defnull/fediwall), modified for use
-> on the [populus.social](https://populus.social) landing page. This is not
-> the upstream project; please report issues specific to this fork here,
-> not upstream. Licensed AGPL-3.0 — see
+> **This is populus.social's development version of Fediwall**, built for
+> use on the [populus.social](https://populus.social) landing page. We
+> love that Fediwall is open source: we develop upstream-first, aiming to
+> contribute changes back to
+> [defnull/fediwall](https://github.com/defnull/fediwall) where they make
+> sense, rather than diverging from it. This is not the upstream project
+> itself — please report issues specific to this version here, not
+> upstream. Licensed AGPL-3.0 — see
 > [Populus Modifications](#populus-modifications) below for what changed
 > and when.
 
@@ -15,7 +18,7 @@ Fediwall is a *media wall* application made for [Mastodon](https://joinmastodon.
 
 ## Populus Modifications
 
-This fork is developed on the `populus` branch and released under
+This version is developed on the `populus` branch and released under
 `populus-YYYY.MM.DD[-N]`-style tags. AGPL-3.0 §5(a) requires prominent
 notice of modification and a relevant date — this section is that notice.
 The corresponding source is this repository, at the tag matching the
