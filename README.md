@@ -1,45 +1,8 @@
 # Fediwall
 
-> **This is populus.social's development version of Fediwall**, built for
-> use on the [populus.social](https://populus.social) landing page. We
-> love that Fediwall is open source: we develop upstream-first, aiming to
-> contribute changes back to
-> [defnull/fediwall](https://github.com/defnull/fediwall) where they make
-> sense, rather than diverging from it. This is not the upstream project
-> itself — please report issues specific to this version here, not
-> upstream. Licensed AGPL-3.0 — see
-> [Populus Modifications](#populus-modifications) below for what changed
-> and when.
-
 Fediwall is a *media wall* application made for [Mastodon](https://joinmastodon.org/). Follow hashtags or accounts and show the most recent posts in a self-updating, screen filling and visually pleasing masonry grid layout. Put it on a large screen and showcase community feedback or social media reactions while hosting your next big event, or use it to look at cat pictures all day. Your choice.
 
 **Try it!** Check out [fediwall.social](https://fediwall.social/) or host your own (see below).
-
-
-## Populus Modifications
-
-This version is developed on the `populus` branch and released under
-`populus-YYYY.MM.DD[-N]`-style tags. AGPL-3.0 §5(a) requires prominent
-notice of modification and a relevant date — this section is that notice.
-The corresponding source is this repository, at the tag matching the
-deployed build.
-
-* **2026-06-21** — Added `showFooter` config option to independently toggle
-  the footer's visibility (`abd1cd1`, `387b587`; a field-name bug in the
-  related `showInfobar` option was fixed 2026-07-01, `8669710`).
-* **2026-06-21** — Added `textLines` config to truncate long posts behind a
-  "Read more" toggle (`dfc3235`).
-* **2026-06-21** — Added `maxPosts` config to cap the wall to its top N
-  posts (`81da811`, `2c84275`).
-* **2026-06-21** — Fixed masonry relayout when expanding/collapsing a post
-  (`a8397f0`, `ee20f58`).
-* **2026-07-01** — Added `allowConfig` to structurally disable the settings
-  dialog (`967de83`).
-* **2026-07-01** — Rewrote the InfoBar copy as an invitation rather than a
-  tool description (`84d373e`).
-
-Full history for these changes is on the `populus` branch of this
-repository.
 
 
 ## Features
