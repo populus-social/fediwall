@@ -7,7 +7,7 @@ you in line with the AGPL and our upstream-first development philosophy.
 - **Source code and build instructions:** branch [`populus`](../../tree/populus)
 - **Unmodified upstream mirror:** branch `upstream-main`, tracking
   [defnull/fediwall](https://github.com/defnull/fediwall)
-- **Current deployed release:** tag `populus-2026.07.05-2`
+- **Current deployed release:** tag `populus-2026.07.16`
 
 ## Populus Modifications
 
@@ -25,6 +25,9 @@ Development happens on the `populus` branch, released under
   (`a8397f0`, `ee20f58`).
 * **2026-07-01** — Added `allowConfig` to structurally disable the settings
   dialog (`967de83`).
+* **2026-07-16** — Forced `target="_blank" rel="noopener noreferrer"` on
+  post-content links (mentions/hashtags/URLs) so clicking one opens a new
+  tab instead of navigating away from the wall (`a54333a`).
 
 Full history for these changes is on the `populus` branch of this
 repository.
